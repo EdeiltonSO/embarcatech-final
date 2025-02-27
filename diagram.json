@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "author": "Edeilton Oliveira",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-pi-pico-w",
+      "id": "pico",
+      "top": -51.25,
+      "left": 80.35,
+      "attrs": { "builder": "pico-sdk" }
+    },
+    {
+      "type": "wokwi-rgb-led",
+      "id": "rgb26",
+      "top": 42.4,
+      "left": -114.1,
+      "attrs": { "common": "cathode" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": -22.6,
+      "left": -9.6,
+      "attrs": { "color": "black", "key": "a" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn2",
+      "top": -22.6,
+      "left": 182.4,
+      "attrs": { "color": "black", "key": "b" }
+    },
+    { "type": "wokwi-text", "id": "text1", "top": -48, "left": 19.2, "attrs": { "text": "A" } },
+    { "type": "wokwi-text", "id": "text2", "top": -48, "left": 211.2, "attrs": { "text": "B" } },
+    { "type": "wokwi-resistor", "id": "r1", "top": 90.35, "left": 0, "attrs": { "value": "330" } },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 99.95,
+      "left": -57.6,
+      "attrs": { "value": "330" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r3",
+      "top": 109.55,
+      "left": 0,
+      "attrs": { "value": "330" }
+    },
+    {
+      "type": "board-ssd1306",
+      "id": "oled1",
+      "top": 70.34,
+      "left": -258.97,
+      "attrs": { "i2cAddress": "0x3c" }
+    },
+    { "type": "wokwi-vcc", "id": "vcc6", "top": 19.96, "left": -288, "attrs": {} }
+  ],
+  "connections": [
+    [ "pico:GP0", "$serialMonitor:RX", "", [] ],
+    [ "pico:GP1", "$serialMonitor:TX", "", [] ],
+    [ "pico:GND.4", "rgb26:COM", "black", [ "h0" ] ],
+    [ "pico:GP5", "btn1:2.r", "white", [ "h-19.2", "v-9.8" ] ],
+    [ "pico:GND.1", "btn1:1.r", "black", [ "h-19.2", "v9.6" ] ],
+    [ "pico:GND.8", "btn2:1.l", "black", [ "h19.51", "v9.6" ] ],
+    [ "btn2:2.l", "pico:GP6", "white", [ "h-9.6", "v153.8", "h-105.6", "v-124.8" ] ],
+    [ "rgb26:G", "r1:1", "limegreen", [ "v9.6", "h1.3" ] ],
+    [ "rgb26:B", "r2:1", "blue", [ "v0" ] ],
+    [ "rgb26:R", "r3:1", "red", [ "v0" ] ],
+    [ "r1:2", "pico:GP11", "limegreen", [ "v0" ] ],
+    [ "r2:2", "pico:GP12", "blue", [ "v0" ] ],
+    [ "r3:2", "pico:GP13", "red", [ "v0" ] ],
+    [ "vcc6:VCC", "oled1:VCC", "red", [ "v9.6", "h76.65" ] ],
+    [ "oled1:SCL", "pico:GP15", "cyan", [ "v-19.2", "h57.9", "v96" ] ],
+    [ "oled1:SDA", "pico:GP14", "gold", [ "v-28.8", "h57.67", "v96" ] ],
+    [
+      "pico:GND.5",
+      "oled1:GND",
+      "black",
+      [ "h9.91", "v28.84", "h-307.2", "v9.6", "h-124.8", "v-115.2", "h48" ]
+    ]
+  ],
+  "dependencies": {}
+}
